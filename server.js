@@ -5,6 +5,15 @@
  * Run with:  node server.js
  * Port:      3001  (Vite dev server proxies /api → http://localhost:3001)
  */
+import { createClient } from '@supabase/supabase-js';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY
+);
 
 import express from 'express';
 import cors from 'cors';
@@ -21,7 +30,6 @@ app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] }));
 app.use(express.json());
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
-
 /**
  * Returns a simple farmer-friendly advisory message based on weather conditions.
  * Written in plain language — no weather jargon.

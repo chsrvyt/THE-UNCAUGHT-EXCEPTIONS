@@ -194,7 +194,7 @@ export default function SpoilagePage() {
                   style={{
                     background: done ? '#f0fdf4' : tip.color,
                     border: `1.5px solid ${done ? '#86efac' : 'transparent'}`,
-                    border: 'none',
+
                     width: '100%',
                     opacity: done ? 0.75 : 1,
                     transition: 'all 0.2s',
