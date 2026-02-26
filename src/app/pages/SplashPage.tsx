@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useApp } from '../context/AppContext';
 import { LANGUAGES, Language } from '../data/translations';
+import { AuthModal } from '../components/AuthModal';
 
 const AppLogo = () => (
   <svg width="100" height="100" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -50,13 +51,22 @@ const FEATURES = [
 
 export default function SplashPage() {
   const navigate = useNavigate();
-  const { t, language, setLanguage } = useApp();
+  const { t, language, setLanguage, user } = useApp();
   const [mounted, setMounted] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
 
   useEffect(() => {
     const id = setTimeout(() => setMounted(true), 80);
     return () => clearTimeout(id);
   }, []);
+
+  const handleStart = () => {
+    if (user) {
+      navigate('/app');
+    } else {
+      setIsAuthOpen(true);
+    }
+  };
 
   return (
     <div
@@ -70,6 +80,8 @@ export default function SplashPage() {
         fontFamily: 'Nunito, sans-serif',
       }}
     >
+      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+
       {/* Floating emoji background */}
       {FLOATING_ITEMS.map((item, i) => (
         <div
@@ -241,7 +253,7 @@ export default function SplashPage() {
         style={{ position: 'relative', zIndex: 2, animation: mounted ? 'fadeInUp 0.55s 0.65s ease both' : 'none' }}
       >
         <button
-          onClick={() => navigate('/onboarding')}
+          onClick={handleStart}
           className="w-full rounded-2xl flex items-center justify-center gap-2 btn-shimmer"
           style={{
             padding: '19px 24px',
@@ -253,7 +265,7 @@ export default function SplashPage() {
             letterSpacing: '0.01em',
           }}
         >
-          {t.getStarted} →
+          {user ? 'Go to Dashboard' : t.getStarted} →
         </button>
         <p className="text-center mt-3" style={{ fontSize: 12, color: '#9ca3af', fontWeight: 500 }}>
           {t.appVersion}

@@ -1,95 +1,77 @@
 import fetch from 'node-fetch';
 
+// Simple in-memory cache
+let newsCache = {
+    data: null,
+    lastFetched: 0
+};
+
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour in milliseconds
+
 /**
- * Controller for fetching agricultural news from India
- * Supports filtering by state and language
- * Keywords: किसान, कृषि, farmer, agriculture, mandi
+ * Controller for fetching curated agricultural news headlines
  */
 export const getKisanNews = async (req, res, next) => {
     try {
-        const { state, language = 'en' } = req.query;
+        const { language = 'en' } = req.query;
         const apiKey = process.env.NEWS_API_KEY;
+        const now = Date.now();
+
+        // Check cache first
+        if (newsCache.data && (now - newsCache.lastFetched < CACHE_DURATION)) {
+            return res.json(newsCache.data);
+        }
 
         if (!apiKey || apiKey === 'your_news_api_key_here') {
             return res.status(500).json({
-                error: 'News API key is not configured on the server.',
+                error: 'News API key is not configured.',
                 details: 'Please add NEWS_API_KEY to your .env file.'
             });
         }
 
-        // Keywords for agricultural news in India
-        const keywords = ['farmer', 'agriculture', 'mandi', 'किसान', 'कृषि'];
+        // Refined keywords for Indian agriculture
+        const keywords = ['agriculture', 'farming', 'mandi', 'MSP', 'crop', 'fertilizer'];
         const qBase = `(${keywords.join(' OR ')})`;
+        const finalQuery = `${qBase} AND India`;
 
-        // Ensure news is related to India. If state exists, use state, else use India.
-        const locationQuery = state ? state : 'India';
-        const finalQuery = `${qBase} AND ${locationQuery}`;
-
-        // NewsAPI.org v2/everything endpoint
-        // Supports searching across titles and content
         const url = new URL('https://newsapi.org/v2/everything');
         url.searchParams.append('q', finalQuery);
         url.searchParams.append('apiKey', apiKey);
         url.searchParams.append('language', language === 'hi' ? 'hi' : 'en');
         url.searchParams.append('sortBy', 'publishedAt');
-        url.searchParams.append('pageSize', '20');
+        url.searchParams.append('pageSize', '5'); // Limit to 5 headlines
 
         const response = await fetch(url.toString());
         const data = await response.json();
 
         if (!response.ok) {
-            // Handle rate limits and invalid keys
             if (response.status === 429) {
-                return res.status(429).json({
-                    error: 'Rate limit exceeded for News API.',
-                    details: 'Please try again later or upgrade your API plan.'
-                });
-            }
-            if (response.status === 401) {
-                return res.status(401).json({
-                    error: 'Invalid News API key.',
-                    details: 'Please check your API key in the .env file.'
-                });
+                return res.status(429).json({ error: 'News service busy. Try again later.' });
             }
             throw new Error(data.message || 'Failed to fetch news');
         }
 
-        // List of Indian states for detection
-        const indianStates = [
-            'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
-            'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
-            'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
-            'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
-            'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal'
-        ];
+        // Strip down articles to bare minimum as requested
+        const formattedArticles = (data.articles || []).map(article => ({
+            title: article.title,
+            source: article.source.name,
+            publishedDate: article.publishedAt,
+            articleUrl: article.url
+        }));
 
-        // Format and clean the response data
-        const formattedArticles = (data.articles || []).map(article => {
-            const content = `${article.title} ${article.description}`.toLowerCase();
-
-            // Detect state from content if not already filtered by state
-            let detectedState = state || null;
-            if (!detectedState) {
-                detectedState = indianStates.find(s => content.includes(s.toLowerCase())) || null;
-            }
-
-            return {
-                title: article.title,
-                source: article.source.name,
-                publishedDate: article.publishedAt,
-                description: article.description,
-                articleUrl: article.url,
-                detectedState: detectedState
-            };
-        });
-
-        res.json({
+        const result = {
             status: 'success',
-            count: formattedArticles.length,
             articles: formattedArticles,
-            query: finalQuery,
-            language: language
-        });
+            updatedAt: new Date().toISOString()
+        };
+
+        // Update cache
+        newsCache = {
+            data: result,
+            lastFetched: now
+        };
+
+        res.json(result);
 
     } catch (error) {
         next(error);
