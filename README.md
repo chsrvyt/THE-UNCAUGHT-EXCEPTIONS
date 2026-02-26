@@ -1,131 +1,163 @@
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2E8B57,100:0F2027&height=220&section=header&text=AgriChain%20Carbon&fontSize=45&fontColor=ffffff&animation=fadeIn"/>
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:228B22,100:0F2027&height=220&section=header&text=Krishak%20Saarthi&fontSize=45&fontColor=ffffff&animation=fadeIn"/>
 </p>
 
 <h3 align="center">
-🌱 Farmer-Centric Carbon Aggregation Platform  
+AI-Driven Farm-to-Market Intelligence Platform "KRISHAK SAARTHI"
 </h3>
 
 <p align="center">
-Built by <b>THE UNCAUGHT EXCEPTIONS</b>
+Built by <b>THE UNTOLD EXCEPTIONS</b>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Climate-Tech-green?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Carbon-Markets-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/AgriTech-innovation-brightgreen?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Impact-Driven-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/AgriTech-AI%20Driven-brightgreen?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Market%20Intelligence-Data%20Powered-blue?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Farmer%20First-Design-success?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Sustainability-Enabled-green?style=for-the-badge"/>
 </p>
 
 ---
 
 # 🏁 One-Line Positioning
 
-> AgriChain Carbon bridges the gap between small farmers and global carbon markets by converting sustainable agricultural practices into measurable and monetizable climate assets.
+> Krishak Saarthi is an AI-powered decision intelligence assistant that helps farmers determine **when to harvest, where to sell, and how to reduce spoilage**, maximizing profitability and sustainability.
 
 ---
 
 # 🚨 Problem Statement
 
-Indian farmers contribute significantly to global climate mitigation through soil carbon sequestration and regenerative practices. However, small and marginal farmers are excluded from carbon markets due to:
+Indian farmers lose **30–40% of agricultural produce**, not due to poor farming practices, but because of:
 
-- Lack of awareness about carbon monetization  
-- Absence of carbon measurement tools  
-- High verification costs  
-- Fragmented land holdings  
-- No structured aggregation platform  
+- Poor harvest timing  
+- Lack of real-time market intelligence  
+- Limited access to mandi price trends  
+- Post-harvest spoilage  
+- Inefficient storage and transport decisions  
 
-Meanwhile, global corporations are actively purchasing carbon credits to meet ESG and Net-Zero commitments.
+Farmers often depend on informal networks for pricing and harvest decisions, leading to:
 
-**This creates a structural disconnect between small-scale carbon producers and global carbon buyers.**
+- Suboptimal price realization  
+- Increased spoilage losses  
+- Financial instability  
+
+Currently, there is no unified, farmer-friendly intelligence platform that integrates:
+
+- Real-time weather forecasts  
+- Soil health indicators  
+- Historical mandi price data  
+- Arrival volumes  
+- Transport logistics  
 
 ---
 
 # 🎯 Objective
 
-To build a scalable digital platform that:
+To build an **AI-Driven Farm-to-Market Intelligence Platform** that:
 
-- Estimates soil carbon sequestration potential  
-- Quantifies carbon credit eligibility  
-- Aggregates small farmers into viable carbon pools  
-- Projects carbon income potential  
-- Encourages regenerative agricultural practices  
+- Recommends optimal harvest windows  
+- Identifies the most profitable mandi  
+- Assesses spoilage risk  
+- Suggests preservation strategies  
+- Ensures transparency and trust  
+
+Designed specifically for:
+
+- Basic Android devices  
+- Low data consumption  
+- Simple language interface  
+- Visual indicators instead of technical dashboards  
 
 ---
 
 # 🌱 Solution Overview
 
-AgriChain Carbon transforms climate-positive agricultural practices into tradable financial assets.
+Krishak Saarthi acts as a **digital agricultural decision assistant**.
 
-The platform enables farmers to:
+It combines:
 
-- Measure carbon sequestration potential  
-- View real-time carbon credit estimates  
-- Improve sustainability score  
-- Simulate income projections  
-- Participate in aggregated carbon pools  
+- Weather forecasting models  
+- Historical mandi pricing trends  
+- Crop maturity timelines  
+- Soil and moisture indicators  
+- Storage risk modeling  
 
-By digitizing farm-level sustainability metrics, we create structured access to voluntary carbon markets.
-
----
-
-# 🧮 MVP – Carbon Credit Engine
-
-## 1️⃣ Carbon Credit Estimator
-
-**Inputs**
-- Farm size (hectares)
-- Crop type
-- Tillage practice
-- Fertilizer intensity
-- Residue management
-- Irrigation type
-
-**Outputs**
-- Estimated sequestration (tCO₂e/year)
-- Estimated carbon credits
-- Projected annual income
-- Confidence score
+The platform delivers **actionable, explainable recommendations**, not just predictions.
 
 ---
 
-## 2️⃣ Sustainability Score (0–100)
+# 🧠 Core AI Modules
 
-Calculated using:
+## 1️⃣ Optimal Harvest Window Predictor
 
-- Soil management practices  
-- Crop rotation diversity  
-- Chemical input intensity  
-- Water efficiency  
-- Residue burning avoidance  
+Uses:
+- Weather forecast trends  
+- Humidity and rainfall probability  
+- Crop maturity stage  
+- Disease and pest risk indicators  
 
-Purpose:
-- Encourages regenerative practices  
-- Enhances climate eligibility  
-- Improves soil health awareness  
-
----
-
-## 3️⃣ Aggregation Model
-
-To address small landholding fragmentation:
-
-- Farmers are digitally pooled  
-- Carbon volumes aggregated  
-- Minimum issuance thresholds met  
-- Cluster-level monetization enabled  
+Outputs:
+- Ideal harvest date range  
+- Risk score (Low / Medium / High)  
+- Visual traffic-light indicator  
 
 ---
 
-## 4️⃣ Income Simulation Model
+## 2️⃣ Smart Mandi Recommendation Engine
 
-Farmers can view:
+Analyzes:
+- Historical mandi price trends  
+- Real-time price signals  
+- Arrival volumes  
+- Distance & transport cost  
+- Demand-supply patterns  
 
-- 1-Year Carbon Income  
-- 5-Year Growth Projection  
-- Impact of improved practices on income  
+Outputs:
+- Top 3 most profitable mandis  
+- Net profit estimation after transport  
+- Price volatility confidence indicator  
 
-This drives financial motivation for sustainable transition.
+---
+
+## 3️⃣ Post-Harvest Spoilage Risk Model
+
+Factors:
+- Storage type  
+- Expected transit duration  
+- Temperature & humidity  
+- Crop perishability index  
+
+Outputs:
+- Spoilage probability  
+- Loss estimation  
+- Preventive suggestions  
+
+---
+
+## 4️⃣ Preservation Strategy Advisor
+
+Recommends:
+- Low-cost storage upgrades  
+- Cold chain options  
+- Chemical-free preservation techniques  
+- Graded cost-effectiveness ranking  
+
+---
+
+# 🌍 Sustainability Extension
+
+As part of AgriChain’s long-term vision, Krishak Saarthi integrates:
+
+- Soil health awareness indicators  
+- Residue management insights  
+- Carbon impact estimation  
+- Regenerative practice suggestions  
+
+This enables farmers to:
+
+- Improve long-term productivity  
+- Reduce environmental footprint  
+- Access future carbon-linked incentives  
 
 ---
 
@@ -133,9 +165,18 @@ This drives financial motivation for sustainable transition.
 
 ```mermaid
 graph TD
-A[Farmer Input Data] --> B[Carbon Estimation Engine]
-B --> C[Sustainability Scoring Module]
-C --> D[Carbon Credit Calculation]
-D --> E[Aggregation Pool]
-E --> F[Carbon Market Interface]
-F --> G[Corporate ESG Buyers]
+A[Farmer Inputs] --> B[Weather API Integration]
+A --> C[Soil & Crop Data]
+A --> D[Mandi Price Database]
+
+B --> E[Harvest Prediction Engine]
+C --> E
+D --> F[Mandi Intelligence Engine]
+
+E --> G[Decision Layer]
+F --> G
+
+G --> H[Spoilage Risk Module]
+H --> I[Recommendation Dashboard]
+
+I --> J[Farmer Mobile Interface]
