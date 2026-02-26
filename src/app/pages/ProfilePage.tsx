@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { MapPin, Wheat, Ruler, Package, ChevronRight, HelpCircle, Phone, Edit3, CheckCircle2 } from 'lucide-react';
+import { MapPin, Wheat, Ruler, Package, ChevronRight, HelpCircle, Phone, Edit3, CheckCircle2, LogOut } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { LANGUAGES, Language } from '../data/translations';
+import { useNavigate } from 'react-router';
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const {
-    t, language, setLanguage,
+    t, language, setLanguage, user, signOut,
     farmerName, setFarmerName, stateVal, district,
     crop, cropEmoji, farmSize, hasStorage,
   } = useApp();
@@ -17,6 +19,11 @@ export default function ProfilePage() {
   const saveName = () => {
     if (nameVal.trim().length >= 2) setFarmerName(nameVal.trim());
     setEditing(false);
+  };
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/');
   };
 
   const details = [
@@ -70,8 +77,8 @@ export default function ProfilePage() {
                 </button>
               </div>
             )}
-            <p style={{ color: '#a7f3d0', margin: '4px 0 0', fontSize: 14, fontWeight: 600 }}>
-              🌾 {crop} Farmer · {district}
+            <p style={{ color: '#a7f3d0', margin: '4px 0 0', fontSize: 13, fontWeight: 600 }}>
+              {user?.email || `🌾 ${crop} Farmer`}
             </p>
           </div>
         </div>
@@ -156,6 +163,7 @@ export default function ProfilePage() {
           {[
             { icon: Phone, label: 'Helpline: 1800-180-1551', sub: 'Tap to call — free farmer helpline (Mon–Sat)', color: '#f0fdf4', iconColor: '#15803d', action: () => (window.location.href = 'tel:18001801551') },
             { icon: HelpCircle, label: t.helpSupport, sub: 'FAQs, guides & video tutorials', color: '#f9fafb', iconColor: '#6b7280', action: () => { } },
+            { icon: LogOut, label: 'Sign Out', sub: 'Securely logout of your account', color: '#fef2f2', iconColor: '#dc2626', action: handleLogout },
           ].map((item, i) => {
             const Icon = item.icon;
             return (
@@ -163,7 +171,7 @@ export default function ProfilePage() {
                 key={i}
                 onClick={item.action}
                 className="w-full flex items-center gap-3 px-4 py-4 transition-all active:opacity-70"
-                style={{ background: 'none', border: 'none', borderBottom: i === 0 ? '1px solid #f3f4f6' : 'none', cursor: 'pointer', textAlign: 'left' }}
+                style={{ background: 'none', border: 'none', borderBottom: i < 2 ? '1px solid #f3f4f6' : 'none', cursor: 'pointer', textAlign: 'left' }}
               >
                 <div className="rounded-xl flex items-center justify-center flex-shrink-0" style={{ width: 44, height: 44, background: item.color }}>
                   <Icon size={20} color={item.iconColor} />
