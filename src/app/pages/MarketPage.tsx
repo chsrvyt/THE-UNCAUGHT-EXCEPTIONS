@@ -4,10 +4,12 @@ import { useApp } from '../context/AppContext';
 import { PageHeader } from '../components/PageHeader';
 
 const ALL_MANDIS = [
-  { name: 'Wardha APMC', distance: 42, price: 6450, transport: 380, net: 6070, isBest: true, trend: '+8%', trendUp: true, sparkline: [60, 65, 62, 70, 75, 72, 78] },
-  { name: 'Nagpur APMC', distance: 28, price: 6200, transport: 250, net: 5950, isBest: false, trend: '+5%', trendUp: true, sparkline: [55, 58, 56, 60, 62, 64, 65] },
-  { name: 'Amravati APMC', distance: 85, price: 6380, transport: 720, net: 5660, isBest: false, trend: '+3%', trendUp: true, sparkline: [58, 60, 59, 62, 63, 64, 65] },
-  { name: 'Yavatmal APMC', distance: 64, price: 5800, transport: 580, net: 5220, isBest: false, trend: '-2%', trendUp: false, sparkline: [70, 68, 65, 63, 60, 58, 56] },
+  { name: 'Nagpur APMC', distance: 28, price: 6450, transport: 250, net: 6200, isBest: true, trend: '+8%', trendUp: true, sparkline: [60, 65, 62, 70, 75, 72, 78] },
+  { name: 'Wardha APMC', distance: 42, price: 6200, transport: 380, net: 5820, isBest: false, trend: '+5%', trendUp: true, sparkline: [55, 58, 56, 60, 62, 64, 65] },
+  { name: 'Akola Mandi', distance: 110, price: 6580, transport: 850, net: 5730, isBest: false, trend: '+3%', trendUp: true, sparkline: [58, 60, 59, 62, 63, 64, 65] },
+  { name: 'Amravati APMC', distance: 85, price: 6180, transport: 620, net: 5560, isBest: false, trend: '-2%', trendUp: false, sparkline: [70, 68, 65, 63, 60, 58, 56] },
+  { name: 'Yavatmal APMC', distance: 64, price: 5900, transport: 480, net: 5420, isBest: false, trend: '+2%', trendUp: true, sparkline: [50, 52, 53, 55, 54, 56, 58] },
+  { name: 'Washim Mandi', distance: 145, price: 6600, transport: 1250, net: 5350, isBest: false, trend: '+1%', trendUp: true, sparkline: [58, 59, 60, 61, 60, 62, 63] },
 ];
 
 type SortKey = 'net' | 'price' | 'distance';

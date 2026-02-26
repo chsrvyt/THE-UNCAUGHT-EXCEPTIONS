@@ -7,8 +7,18 @@ import { STATE_DISTRICTS, LANGUAGES, Language } from '../data/translations';
 const CROPS = [
   { key: 'cotton', emoji: '🌿', color: '#f0fdf4', border: '#86efac', darkColor: '#15803d' },
   { key: 'soybean', emoji: '🫘', color: '#fefce8', border: '#fcd34d', darkColor: '#b45309' },
-  { key: 'rice', emoji: '🌾', color: '#fff7ed', border: '#fdba74', darkColor: '#c2410c' },
-  { key: 'wheat', emoji: '🌻', color: '#fefce8', border: '#fde68a', darkColor: '#d97706' },
+  { key: 'rice', emoji: '🍚', color: '#fff7ed', border: '#fdba74', darkColor: '#c2410c' },
+  { key: 'wheat', emoji: '🌾', color: '#fefce8', border: '#fde68a', darkColor: '#d97706' },
+  { key: 'sugarcane', emoji: '🎋', color: '#f0fdf4', border: '#86efac', darkColor: '#166534' },
+  { key: 'maize', emoji: '🌽', color: '#fffbeb', border: '#fcd34d', darkColor: '#b45309' },
+  { key: 'gram', emoji: '🥣', color: '#fff7ed', border: '#fdba74', darkColor: '#9a3412' },
+  { key: 'bajra', emoji: '🥣', color: '#fafaf9', border: '#d6d3d1', darkColor: '#44403c' },
+  { key: 'potato', emoji: '🥔', color: '#fef3c7', border: '#fde68a', darkColor: '#92400e' },
+  { key: 'onion', emoji: '🧅', color: '#fdf2f8', border: '#fbcfe8', darkColor: '#9d174d' },
+  { key: 'mustard', emoji: '🟡', color: '#fefce8', border: '#fde68a', darkColor: '#854d0e' },
+  { key: 'tur', emoji: '🫘', color: '#fff7ed', border: '#fdba74', darkColor: '#c2410c' },
+  { key: 'groundnut', emoji: '🥜', color: '#fffbeb', border: '#fcd34d', darkColor: '#b45309' },
+  { key: 'jowar', emoji: '🌾', color: '#fafaf9', border: '#d6d3d1', darkColor: '#44403c' },
 ];
 
 const STEP_LABELS = ['Name', 'Location', 'Crop', 'Farm'];

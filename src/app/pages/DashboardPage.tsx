@@ -66,12 +66,12 @@ export default function DashboardPage() {
 
           <div className="px-4 py-4">
             <div className="flex items-stretch gap-3 mb-4">
-              {/* Countdown */}
-              <div className="flex flex-col items-center justify-center rounded-2xl" style={{ background: '#f0fdf4', padding: '16px 20px', minWidth: 100 }}>
+              {/* Harvest Countdown Ring */}
+              <div className="flex flex-col items-center justify-center rounded-2xl" style={{ background: '#f0fdf4', padding: '16px 20px', minWidth: 100, border: '1.5px solid #dcfce7' }}>
                 <div style={{ position: 'relative', width: 72, height: 72, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <svg width="72" height="72" viewBox="0 0 72 72" style={{ position: 'absolute', top: 0, left: 0 }}>
-                    <circle cx="36" cy="36" r="30" fill="none" stroke="#dcfce7" strokeWidth="5" />
-                    <circle cx="36" cy="36" r="30" fill="none" stroke="#16a34a" strokeWidth="5"
+                    <circle cx="36" cy="36" r="30" fill="none" stroke="#dcfce7" strokeWidth="6" />
+                    <circle cx="36" cy="36" r="30" fill="none" stroke="#16a34a" strokeWidth="6"
                       strokeDasharray={`${(7 / 30) * 188} 188`}
                       strokeLinecap="round"
                       style={{
@@ -81,10 +81,12 @@ export default function DashboardPage() {
                       }}
                     />
                   </svg>
-                  <span style={{ fontSize: 38, fontWeight: 900, color: '#14532d', lineHeight: 1, position: 'relative', zIndex: 1 }}>7</span>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 1 }}>
+                    <span style={{ fontSize: 32, fontWeight: 900, color: '#14532d', lineHeight: 1 }}>7</span>
+                  </div>
                 </div>
                 <span style={{ fontSize: 13, color: '#16a34a', fontWeight: 800, marginTop: 4 }}>{t.days}</span>
-                <span style={{ fontSize: 11, color: '#6b7280', fontWeight: 600 }}>{t.harvestIn}</span>
+                <span style={{ fontSize: 10, color: '#6b7280', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>to harvest</span>
               </div>
 
               <div className="flex flex-col gap-2 flex-1">
@@ -154,9 +156,9 @@ export default function DashboardPage() {
           </div>
           <div className="flex">
             {[
-              { name: 'Wardha', price: '₹6,450', net: '₹6,070', best: true },
-              { name: 'Nagpur', price: '₹6,200', net: '₹5,950', best: false },
-              { name: 'Amravati', price: '₹6,380', net: '₹5,660', best: false },
+              { name: 'Nagpur', price: '₹6,450', net: '₹6,200', best: true },
+              { name: 'Wardha', price: '₹6,200', net: '₹5,820', best: false },
+              { name: 'Akola', price: '₹6,580', net: '₹5,730', best: false },
             ].map((m) => (
               <div
                 key={m.name}
