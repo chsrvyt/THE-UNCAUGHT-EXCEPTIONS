@@ -8,6 +8,7 @@
   Run `npm i` to install the dependencies.
 
   Run `npm run dev` to start the development server.
+<<<<<<< HEAD
 
 # 🚨 Problem Statement
 
@@ -101,3 +102,5 @@ G --> H[Spoilage Risk Module]
 H --> I[Recommendation Dashboard]
 
 I --> J[Farmer Mobile Interface]
+=======
+>>>>>>> e6bde571bd3defe3290d369c9a3ae59f1d8968d6
