@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, TrendingUp, TrendingDown, Truck, Star, Filter } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import { PageHeader } from '../components/PageHeader';
+import { MarketNewsWidget } from '../components/MarketNewsWidget';
 
 const ALL_MANDIS = [
   { name: 'Nagpur APMC', distance: 28, price: 6450, transport: 250, net: 6200, isBest: true, trend: '+8%', trendUp: true, sparkline: [60, 65, 62, 70, 75, 72, 78] },
@@ -185,6 +186,11 @@ export default function MarketPage() {
           <p style={{ fontSize: 13, color: '#78350f', margin: 0, fontWeight: 500, lineHeight: 1.5 }}>
             Prices updated daily. Transport cost estimated based on your location. Actual prices may vary at mandi.
           </p>
+        </div>
+
+        {/* ── MARKET NEWS SECTION ─────────────────────────────────────────── */}
+        <div className="mt-4">
+          <MarketNewsWidget />
         </div>
 
       </div>
