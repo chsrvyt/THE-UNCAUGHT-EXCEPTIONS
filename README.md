@@ -1,56 +1,64 @@
-  # Untitled
+# 🌾 Untitled — AI-Driven Farm-to-Market Intelligence Platform
 
-  This is a code bundle for Untitled. The original project is available at https://www.figma.com/design/wxjOLVYyMW0ldI5qutbRBt/Untitled.
+This repository contains the code bundle for **Untitled**, an AI-powered agricultural decision intelligence platform.
 
-  ## Running the code
+Original Figma Design:  
+https://www.figma.com/design/wxjOLVYyMW0ldI5qutbRBt/Untitled
 
-  Run `npm i` to install the dependencies.
+---
 
-  Run `npm run dev` to start the development server.
-<<<<<<< HEAD
+## 🚀 Running the Project
+
+```bash
+npm install
+npm run dev
+```
+
+---
 
 # 🚨 Problem Statement
 
-India is one of the world’s largest agricultural producers — yet **30–40% of agricultural output is lost post-harvest**, not due to weak farming practices, but due to poor decision intelligence between harvest and market realization.
+India is one of the world’s largest agricultural producers. Yet **30–40% of agricultural output is lost post-harvest** — not due to poor farming practices, but due to weak decision intelligence between harvest and market realization.
 
-The issue is not production capacity.
-
-The issue is **profit optimization.**
+The constraint is not production capacity.  
+The constraint is **profit optimization.**
 
 ---
 
-## 🔍 Core Structural Gaps
+# 🔍 Core Structural Gaps
 
 Farmers currently face:
 
-- Harvest timing decisions made without predictive weather intelligence  
-- Mandi selection based on informal networks rather than data  
-- No visibility into price volatility and mandi arrival volumes  
-- Absence of transport-adjusted net profit calculation  
+- Harvest timing decisions without predictive weather intelligence  
+- Mandi selection based on informal networks instead of data  
+- No visibility into price volatility or mandi arrival volumes  
+- No transport-adjusted net profit calculation  
 - High spoilage risk due to storage and transit uncertainty  
 - Limited transparency behind advisory recommendations  
 
-This creates a systemic **information asymmetry**, where:
+This creates systemic **information asymmetry**:
 
-- Traders track supply inflows  
-- Corporates forecast demand  
-- Markets react dynamically  
-- Farmers operate reactively  
+| Stakeholder | Intelligence Access |
+|-------------|--------------------|
+| Traders     | Supply inflows     |
+| Corporates  | Demand forecasting |
+| Markets     | Dynamic pricing    |
+| Farmers     | Reactive decisions |
 
 ---
 
-## ⚠️ Fragmented Ecosystem
+# ⚠️ Fragmented Ecosystem
 
-Existing solutions remain disconnected:
+Existing solutions are disconnected:
 
-- Weather applications provide forecasts, not harvest strategy  
-- Price portals show mandi rates, not profitability insights  
-- Advisory tools lack explainability and transparency  
+- Weather apps provide forecasts — not harvest strategy  
+- Price portals show mandi rates — not profitability insights  
+- Advisory tools lack explainability  
 - No unified system integrates farm conditions with real-time market economics  
 
 ---
 
-## 📉 Resulting Impact
+# 📉 Economic Impact
 
 Due to this intelligence gap, farmers often:
 
@@ -59,29 +67,44 @@ Due to this intelligence gap, farmers often:
 - Incur unnecessary logistics costs  
 - Experience preventable spoilage losses  
 
-This leads to:
+This results in:
 
 - Reduced net income  
-- Increased financial volatility  
+- Higher financial volatility  
 - Lower bargaining power  
 - Long-term economic stress  
 
 ---
 
-## 🌍 Sustainability Disconnect
+# 🌍 Sustainability Disconnect
 
-Additionally, sustainability practices such as:
+Sustainability practices such as:
 
 - Soil health improvement  
 - Residue management  
 - Regenerative farming  
 
-remain disconnected from profitability intelligence systems, limiting long-term productivity gains and access to future carbon-linked incentive programs.
+remain disconnected from profitability intelligence systems, limiting:
+
+- Long-term productivity  
+- Access to carbon-linked incentive programs  
+- Climate-resilient agricultural planning  
 
 ---
 
-> The core challenge is to build a transparent, AI-driven farm-to-market intelligence platform that transforms agricultural production into optimized, explainable, and profitable market realization — while aligning with sustainable agricultural practices.
+# 🎯 Solution Vision
+
+Build a **transparent, AI-driven farm-to-market intelligence platform** that:
+
+- Optimizes harvest timing  
+- Predicts mandi profitability  
+- Adjusts for transport cost and spoilage risk  
+- Provides explainable recommendations  
+- Aligns sustainability with economic outcomes  
+
 ---
+
+# 🏗️ System Architecture
 
 ```mermaid
 graph TD
@@ -100,5 +123,4 @@ G --> H[Spoilage Risk Module]
 H --> I[Recommendation Dashboard]
 
 I --> J[Farmer Mobile Interface]
-=======
->>>>>>> e6bde571bd3defe3290d369c9a3ae59f1d8968d6
+```
