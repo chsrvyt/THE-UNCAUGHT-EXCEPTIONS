@@ -1,4 +1,3 @@
-
   # Untitled
 
   This is a code bundle for Untitled. The original project is available at https://www.figma.com/design/wxjOLVYyMW0ldI5qutbRBt/Untitled.
@@ -82,7 +81,6 @@ remain disconnected from profitability intelligence systems, limiting long-term 
 ---
 
 > The core challenge is to build a transparent, AI-driven farm-to-market intelligence platform that transforms agricultural production into optimized, explainable, and profitable market realization — while aligning with sustainable agricultural practices.
-
 ---
 
 ```mermaid
