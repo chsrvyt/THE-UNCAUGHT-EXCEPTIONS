@@ -4,33 +4,21 @@ import { useApp } from '../context/AppContext';
 import { LANGUAGES, Language } from '../data/translations';
 import { AuthModal } from '../components/AuthModal';
 
+import logoImg from '../../assets/logo.jpg';
+
 const AppLogo = () => (
-  <svg width="100" height="100" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="48" cy="48" r="48" fill="url(#logoGrad)" />
-    <defs>
-      <radialGradient id="logoGrad" cx="40%" cy="35%" r="65%">
-        <stop offset="0%" stopColor="#166534" />
-        <stop offset="100%" stopColor="#14532d" />
-      </radialGradient>
-    </defs>
-    {/* Sun */}
-    <circle cx="48" cy="22" r="7" fill="#FFC107" />
-    <line x1="48" y1="10" x2="48" y2="13" stroke="#FFC107" strokeWidth="2" strokeLinecap="round" />
-    <line x1="38" y1="14" x2="40" y2="16" stroke="#FFC107" strokeWidth="2" strokeLinecap="round" />
-    <line x1="58" y1="14" x2="56" y2="16" stroke="#FFC107" strokeWidth="2" strokeLinecap="round" />
-    <line x1="34" y1="22" x2="37" y2="22" stroke="#FFC107" strokeWidth="2" strokeLinecap="round" />
-    <line x1="59" y1="22" x2="62" y2="22" stroke="#FFC107" strokeWidth="2" strokeLinecap="round" />
-    {/* Stalk */}
-    <line x1="48" y1="30" x2="48" y2="78" stroke="white" strokeWidth="3" strokeLinecap="round" />
-    {/* Grains Left */}
-    <ellipse cx="39" cy="40" rx="4.5" ry="7" fill="white" transform="rotate(-18 39 40)" />
-    <ellipse cx="37" cy="51" rx="4.5" ry="7" fill="white" transform="rotate(-22 37 51)" />
-    <ellipse cx="38" cy="62" rx="4.5" ry="7" fill="white" transform="rotate(-18 38 62)" />
-    {/* Grains Right */}
-    <ellipse cx="57" cy="40" rx="4.5" ry="7" fill="white" transform="rotate(18 57 40)" />
-    <ellipse cx="59" cy="51" rx="4.5" ry="7" fill="white" transform="rotate(22 59 51)" />
-    <ellipse cx="58" cy="62" rx="4.5" ry="7" fill="white" transform="rotate(18 58 62)" />
-  </svg>
+  <img
+    src={logoImg}
+    alt="Krishak Saarthi Logo"
+    style={{
+      width: 120,
+      height: 120,
+      borderRadius: '50%',
+      objectFit: 'cover',
+      border: '4px solid white',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+    }}
+  />
 );
 
 const FLOATING_ITEMS = [

@@ -20,6 +20,7 @@ export function ChatBot() {
         },
     ]);
     const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const scrollToBottom = () => {
@@ -32,38 +33,63 @@ export function ChatBot() {
         }
     }, [messages, isOpen]);
 
-    const handleSend = () => {
-        if (!inputValue.trim()) return;
+    const handleSend = async () => {
+        if (!inputValue.trim() || isLoading) return;
 
+        const userText = inputValue.trim();
         const userMessage: Message = {
             id: Date.now().toString(),
-            text: inputValue,
+            text: userText,
             sender: 'user',
             timestamp: new Date(),
         };
 
         setMessages((prev) => [...prev, userMessage]);
         setInputValue('');
+        setIsLoading(true);
 
-        // Simulate bot response
-        setTimeout(() => {
+        try {
+            // Prepare history for Gemini
+            const history = messages
+                .filter(m => m.id !== '1') // Skip initial greeting
+                .map(m => ({
+                    role: m.sender === 'user' ? 'user' : 'model',
+                    parts: [{ text: m.text }],
+                }));
+
+            const response = await fetch('http://localhost:3001/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userText, history }),
+            });
+
+            const data = await response.json();
+
+            if (data.error) throw new Error(data.error);
+
             const botResponse: Message = {
                 id: (Date.now() + 1).toString(),
-                text: getBotResponse(inputValue),
+                text: data.text,
                 sender: 'bot',
                 timestamp: new Date(),
             };
             setMessages((prev) => [...prev, botResponse]);
-        }, 1000);
-    };
+        } catch (error: any) {
+            console.error('Chat Error:', error);
+            const botReply = error.message.includes('API key')
+                ? "API Key missing! Please add your GEMINI_API_KEY to the .env file."
+                : "Maaf kijiye, abhi connectivity issues hain. Kripya thodi der baad koshish karein.";
 
-    const getBotResponse = (input: string) => {
-        const text = input.toLowerCase();
-        if (text.includes('weather')) return 'The weather for your region looks optimal for wheat cultivation this week. Expect light showers on Thursday.';
-        if (text.includes('market') || text.includes('price')) return 'Currently, the mandi price for Wheat in your local market is ₹2,275 per quintal, up by 2% from yesterday.';
-        if (text.includes('crop') || text.includes('planting')) return 'Based on your soil health report, I recommend planting mustard or gram for the upcoming Rabi season.';
-        if (text.includes('pest') || text.includes('insect')) return 'I see. Please upload a photo of the affected area, or describe the symptoms. Common pests this season include aphids.';
-        return "I'm here to assist with weather, market prices, crop recommendations, and pest management. What would you like to know?";
+            const errorMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                text: botReply,
+                sender: 'bot',
+                timestamp: new Date(),
+            };
+            setMessages((prev) => [...prev, errorMessage]);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -119,6 +145,15 @@ export function ChatBot() {
                                     </div>
                                 </div>
                             ))}
+                            {isLoading && (
+                                <div className="flex justify-start">
+                                    <div className="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 rounded-tl-none flex gap-1 items-center">
+                                        <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                                        <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                                        <div className="w-1.5 h-1.5 bg-emerald-600 rounded-full animate-bounce"></div>
+                                    </div>
+                                </div>
+                            )}
                             <div ref={messagesEndRef} />
                         </div>
 
@@ -130,12 +165,13 @@ export function ChatBot() {
                                     value={inputValue}
                                     onChange={(e) => setInputValue(e.target.value)}
                                     onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                                    placeholder="Ask me anything..."
-                                    className="w-full pl-4 pr-12 py-3 bg-gray-100 border-none rounded-xl focus:ring-2 focus:ring-emerald-500 text-sm outline-none"
+                                    placeholder={isLoading ? "Krishak Saarthi is thinking..." : "Ask me anything..."}
+                                    disabled={isLoading}
+                                    className="w-full pl-4 pr-12 py-3 bg-gray-100 border-none rounded-xl focus:ring-2 focus:ring-emerald-500 text-sm outline-none disabled:opacity-70"
                                 />
                                 <button
                                     onClick={handleSend}
-                                    disabled={!inputValue.trim()}
+                                    disabled={!inputValue.trim() || isLoading}
                                     className="absolute right-2 p-2 bg-emerald-600 text-white rounded-lg disabled:opacity-50 disabled:bg-gray-400 transition-all hover:bg-emerald-700"
                                     title="Send"
                                 >

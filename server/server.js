@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import weatherRoutes from './routes/weatherRoutes.js';
 import newsRoutes from './routes/newsRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { supabase } from './config/supabase.js';
 
@@ -18,6 +19,7 @@ app.use(express.json());
 // Routes
 app.use('/api/weather', weatherRoutes);
 app.use('/api/news', newsRoutes);
+app.use('/api/chat', chatRoutes);
 
 // Health check endpoint
 app.get('/api/health', async (req, res) => {

@@ -20,7 +20,7 @@ export function MarketNewsWidget() {
         setError(null);
         try {
             const langParam = language === 'hi' ? 'hi' : 'en';
-            const response = await fetch(`http://localhost:3001/api/news/kisan-news?language=${langParam}`);
+            const response = await fetch(`/api/news/kisan-news?language=${langParam}`);
 
             if (!response.ok) {
                 const text = await response.text();

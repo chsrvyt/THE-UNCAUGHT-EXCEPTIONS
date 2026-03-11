@@ -97,12 +97,20 @@ export function WeatherWidget() {
         setState('fetching');
         setError(null);
         fetch(`/api/weather?lat=${lat}&lon=${lon}`)
-            .then((r) => {
-                if (!r.ok) throw new Error('Server error');
-                return r.json() as Promise<WeatherData | { error: string }>;
+            .then(async (r) => {
+                const text = await r.text();
+                try {
+                    const data = JSON.parse(text);
+                    if (!r.ok) throw new Error(data.error || data.message || `Server error (${r.status})`);
+                    return data;
+                } catch (e) {
+                    if (!r.ok) throw new Error(`Backend unavailable. Make sure your server is running. (${r.status})`);
+                    throw e;
+                }
             })
             .then((data) => {
-                if ('error' in data) throw new Error(data.error);
+                if (data.error) throw new Error(String(data.error));
+                if (data.message && !data.current) throw new Error(String(data.message));
                 setWeather(data as WeatherData);
                 setState('done');
             })

@@ -109,9 +109,9 @@ export const TRANSLATIONS = {
     appVersion: 'Version 1.0 — AgriChain',
   },
   hi: {
-    appName: 'कृषक साथी',
+    appName: 'कृषक सारथी',
     appSubtitle: 'स्मार्ट खेती निर्णय',
-    tagline: 'आपका विश्वसनीय खेती साथी',
+    tagline: 'पोषण से समृद्धि तक',
     getStarted: 'शुरू करें',
     govTagline: 'एग्रीचेन पहल',
     step: 'चरण',

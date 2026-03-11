@@ -11,6 +11,7 @@ export const errorHandler = (err, req, res, next) => {
         status: 'error',
         statusCode,
         message,
+        error: message, // Added for frontend compatibility
         stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
     });
 };
