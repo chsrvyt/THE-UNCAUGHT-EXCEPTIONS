@@ -255,9 +255,18 @@ export default function SplashPage() {
         >
           {user ? 'Go to Dashboard' : t.getStarted} →
         </button>
-        <p className="text-center mt-3" style={{ fontSize: 12, color: '#9ca3af', fontWeight: 500 }}>
-          {t.appVersion}
-        </p>
+        <div className="flex justify-center items-center gap-3 mt-3">
+          <p style={{ fontSize: 12, color: '#9ca3af', fontWeight: 500, margin: 0 }}>
+            {t.appVersion}
+          </p>
+          <span style={{ color: '#d1d5db', fontSize: 12 }}>|</span>
+          <button 
+            onClick={() => navigate('/admin/login')} 
+            style={{ fontSize: 12, color: '#9ca3af', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+          >
+            Admin Panel
+          </button>
+        </div>
       </div>
     </div>
   );

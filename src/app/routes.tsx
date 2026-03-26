@@ -8,6 +8,8 @@ import HarvestPage from './pages/HarvestPage';
 import MarketPage from './pages/MarketPage';
 import SpoilagePage from './pages/SpoilagePage';
 import ProfilePage from './pages/ProfilePage';
+import AdminFarmersPage from './pages/AdminFarmersPage';
+import AdminLoginPage from './pages/AdminLoginPage';
 
 export const router = createBrowserRouter([
   { path: '/', Component: SplashPage },
@@ -23,5 +25,9 @@ export const router = createBrowserRouter([
       { path: 'profile', Component: ProfilePage },
     ],
   },
+  /* Admin routes — full-width, outside phone frame */
+  { path: '/admin', Component: AdminLoginPage },
+  { path: '/admin/login', Component: AdminLoginPage },
+  { path: '/admin/farmers', Component: AdminFarmersPage },
   { path: '*', Component: () => <Navigate to="/" replace /> },
 ]);
