@@ -4,6 +4,7 @@ import { TrendingUp, Sprout, ShoppingBasket, AlertTriangle, Bell, ChevronRight, 
 import { useApp } from '../context/AppContext';
 import { RiskBadge } from '../components/RiskBadge';
 import { WeatherWidget } from '../components/WeatherWidget';
+import { MarketNewsWidget } from '../components/MarketNewsWidget';
 
 const TIPS = [
   { icon: '💡', title: 'Tip of the Day', text: 'Cotton moisture should be 8–10% before storage. Check with a moisture meter.', bg: '#fffbeb', border: '#fde68a', titleColor: '#92400e', textColor: '#78350f' },
@@ -120,6 +121,11 @@ export default function DashboardPage() {
         {/* ── WEATHER WIDGET ────────────────────────────────────────────────── */}
         <div style={{ marginBottom: 14 }}>
           <WeatherWidget />
+        </div>
+
+        {/* ── MARKET NEWS WIDGET ────────────────────────────────────────────── */}
+        <div style={{ marginBottom: 14 }}>
+          <MarketNewsWidget />
         </div>
 
         {/* ── 3 QUICK ACTION CARDS ─────────────────────────────────────────── */}

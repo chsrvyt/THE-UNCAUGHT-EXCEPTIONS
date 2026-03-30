@@ -5,7 +5,7 @@ import { useApp } from '../context/AppContext';
 import {
   Search, Users, Loader2, ChevronLeft, ChevronRight,
   ArrowUpDown, Sprout, ShieldCheck, MapPin, Phone,
-  Calendar, UserCheck, UserX, Clock,
+  Calendar, UserCheck, UserX, Clock, RefreshCw, Newspaper,
 } from 'lucide-react';
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -95,6 +95,8 @@ export default function AdminFarmersPage() {
   const [sortField, setSortField] = useState<'username' | 'created_at'>('created_at');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
   const [authChecked, setAuthChecked] = useState(false);
+  const [refreshingNews, setRefreshingNews] = useState(false);
+  const [refreshStatus, setRefreshStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   /* ── Admin gate — redirect non-admin users ─────────────────────────────── */
   useEffect(() => {
@@ -184,6 +186,26 @@ export default function AdminFarmersPage() {
   const pendingFarmers = farmers.filter((f) => f.status?.toLowerCase() === 'pending').length;
   const inactiveFarmers = farmers.filter((f) => f.status?.toLowerCase() === 'inactive').length;
 
+  /* ── News Refresh Handler ─────────────────────────────────────────────── */
+  const handleRefreshNews = async () => {
+    if (refreshingNews) return;
+    setRefreshingNews(true);
+    setRefreshStatus('idle');
+    try {
+      const response = await fetch('/api/news/admin/refresh', {
+        method: 'POST',
+      });
+      if (!response.ok) throw new Error('API failed');
+      setRefreshStatus('success');
+      setTimeout(() => setRefreshStatus('idle'), 3000);
+    } catch (err) {
+      console.error('[Admin] News refresh failed:', err);
+      setRefreshStatus('error');
+    } finally {
+      setRefreshingNews(false);
+    }
+  };
+
   /* ── Render gate — wait for auth check ─────────────────────────────────── */
   if (!authChecked) {
     return (
@@ -267,6 +289,32 @@ export default function AdminFarmersPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* ── NEWS REFRESH PANEL ────────────────────────────────────────────── */}
+        <div style={{ ...styles.statCard, background: '#f5f3ff', border: '1.5px dashed #c084fc', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 16 }}>
+          <div style={{ width: 48, height: 48, borderRadius: 14, background: '#ede9fe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Newspaper size={22} color="#7c3aed" />
+          </div>
+          <div style={{ flex: 1 }}>
+            <p style={styles.statLabel}>News Management</p>
+            <p style={{ margin: '2px 0 0', fontSize: 13, color: '#6b7280', fontWeight: 600 }}>
+              Update the agricultural news cache manually from NewsAPI.
+            </p>
+          </div>
+          <button
+            onClick={handleRefreshNews}
+            disabled={refreshingNews}
+            style={{
+              padding: '10px 20px', background: refreshStatus === 'error' ? '#ef4444' : refreshStatus === 'success' ? '#22c55e' : '#7c3aed',
+              color: 'white', border: 'none', borderRadius: 12, fontWeight: 800,
+              fontSize: 13, display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(124, 58, 237, 0.2)', transition: 'all 0.3s'
+            }}
+          >
+            {refreshingNews ? <Loader2 size={16} className="animate-spin" /> : <RefreshCw size={16} />}
+            {refreshingNews ? 'Refreshing...' : refreshStatus === 'success' ? 'Updated!' : refreshStatus === 'error' ? 'Failed' : 'Force Refresh Cache'}
+          </button>
         </div>
 
         {/* ── Search Bar ─────────────────────────────────────────────────────── */}
